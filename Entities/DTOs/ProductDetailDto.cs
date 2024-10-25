@@ -8,5 +8,6 @@ namespace Entities.DTOs
         public string ProductName { get; set; }
         public string CategoryName { get; set; }
         public short UnitsInStock { get; set; }
+        public List<string> ImageUrl { get; set; }
     }
 }

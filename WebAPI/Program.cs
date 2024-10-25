@@ -48,6 +48,7 @@ builder.Services.AddDependencyResolvers(new ICoreModule[]
 {
     new CoreModule(),
 });
+
 builder.Services.AddHttpContextAccessor();
 //builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddSingleton<IProductService,ProductManager>();

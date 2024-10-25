@@ -4,20 +4,19 @@ using DataAccess.Abstract;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserDal : EfEntityRepositoryBase<User, NorthwindContext>, IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<User, DatabaseContext>, IUserDal
     {
-        public List<OperationClaim> GetClaims(User user)
+        public List<Role> GetClaims(User user)
         {
-            using (var context = new NorthwindContext())
+            using (var context = new DatabaseContext())
             {
-                var result = from operationClaim in context.OperationClaims
-                             join userOperationClaim in context.UserOperationClaims
-                                 on operationClaim.ID equals userOperationClaim.OperationClaimID
-                             where userOperationClaim.UserID == user.ID
-                             select new OperationClaim { ID = operationClaim.ID, Name = operationClaim.Name };
+                var result = from role in context.Roles
+                             join userRoleClaim in context.UserRoleClaims
+                             on role.RoleID equals userRoleClaim.RoleID
+                             where userRoleClaim.UserID == user.UserID
+                             select new Role { RoleID = role.RoleID, RoleName = role.RoleName };
                 return result.ToList();
-
             }
-        } 
+        }
     }
 }

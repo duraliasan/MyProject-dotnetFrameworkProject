@@ -13,7 +13,7 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        public List<OperationClaim> GetClaims(User user)
+        public List<Role> GetClaims(User user)
         {
             return _userDal.GetClaims(user);
         }
